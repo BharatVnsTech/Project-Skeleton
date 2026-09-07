@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microservices API Console</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Microservices API Console</h1>
+        <div class="system-status" id="systemStatus">
+            <span class="status-label">System Status</span>
+            <div class="status-items">
+                <span class="status-item" data-service="gateway">API GATEWAY</span>
+                <span class="status-item" data-service="discovery">SERVICE DISCOVERY</span>
+                <span class="status-item" data-service="user">USER SERVICE</span>
+                <span class="status-item" data-service="parking">PARKING SERVICE</span>
+                <span class="status-item" data-service="payment">PAYMENT SERVICE</span>
+            </div>
+            <button class="btn btn-sm" id="refreshStatus">Refresh Status</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="left-panel">
+            <!-- Request Builder -->
+            <section class="panel request-builder">
+                <h2>Request Builder</h2>
+                <div class="form-row">
+                    <label>Method</label>
+                    <select id="httpMethod">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Base URL</label>
+                    <input type="text" id="baseUrl" value="http://localhost:8080">
+                </div>
+                <div class="form-row">
+                    <label>Endpoint</label>
+                    <input type="text" id="endpoint" value="/api/v1/users" placeholder="/api/v1/users/101">
+                </div>
+                <div class="form-row">
+                    <label>Headers</label>
+                    <div class="headers-section">
+                        <div class="header-row">
+                            <input type="text" placeholder="X-Correlation-ID" class="header-key" value="X-Correlation-ID">
+                            <input type="text" placeholder="auto-generated" class="header-value" id="correlationIdInput">
+                        </div>
+                        <div class="header-row">
+                            <input type="text" placeholder="Header name" class="header-key" value="Content-Type">
+                            <input type="text" placeholder="Value" class="header-value" value="application/json">
+                        </div>
+                        <button class="btn btn-sm" id="addHeader">+ Add Header</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label>Request Body</label>
+                    <textarea id="requestBody" rows="5" disabled placeholder="GET requests do not need a body"></textarea>
+                </div>
+                <button class="btn btn-primary btn-lg" id="sendRequest">SEND REQUEST</button>
+            </section>
+
+            <!-- Quick API Buttons -->
+            <section class="panel quick-apis">
+                <h2>Quick API</h2>
+                <div class="quick-api-grid">
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/users">GET USERS</button>
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/users/101">GET USER 101</button>
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/parking/slots">GET PARKING SLOTS</button>
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/parking/slots/P-101">GET SLOT P-101</button>
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/payments">GET PAYMENTS</button>
+                    <button class="btn btn-quick" data-method="GET" data-endpoint="/api/v1/payments/PAY-1001">GET PAYMENT PAY-1001</button>
+                    <button class="btn btn-quick btn-health" data-method="GET" data-endpoint="/actuator/health" data-port="8080">GATEWAY HEALTH</button>
+                    <button class="btn btn-quick btn-health" data-method="GET" data-endpoint="/actuator/health" data-port="8081">USER SVC HEALTH</button>
+                    <button class="btn btn-quick btn-health" data-method="GET" data-endpoint="/actuator/health" data-port="8082">PARKING SVC HEALTH</button>
+                    <button class="btn btn-quick btn-health" data-method="GET" data-endpoint="/actuator/health" data-port="8083">PAYMENT SVC HEALTH</button>
+                </div>
+            </section>
+
+            <!-- Request History -->
+            <section class="panel request-history">
+                <h2>Request History</h2>
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>METHOD</th>
+                            <th>ENDPOINT</th>
+                            <th>STATUS</th>
+                            <th>SERVICE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyBody">
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <div class="right-panel">
+            <!-- Request Flow Visualization -->
+            <section class="panel flow-section">
+                <h2>Request Flow</h2>
+                <div id="flowVisualization" class="flow-container">
+                    <div class="flow-empty">Send a request to see the flow visualization</div>
+                </div>
+            </section>
+
+            <!-- Request Info -->
+            <section class="panel request-info" id="requestInfoSection" style="display:none">
+                <h2>Request Info</h2>
+                <div id="requestInfo"></div>
+            </section>
+
+            <!-- Response -->
+            <section class="panel response-section" id="responseSection" style="display:none">
+                <h2>Response</h2>
+                <div id="responseInfo"></div>
+                <pre id="responseBody"></pre>
+                <button class="btn btn-sm" id="copyResponse">COPY RESPONSE</button>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

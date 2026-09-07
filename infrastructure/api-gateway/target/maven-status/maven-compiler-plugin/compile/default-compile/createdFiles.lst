@@ -1,0 +1,5 @@
+com\enterprise\platform\gateway\ApiGatewayApplication.class
+com\enterprise\platform\gateway\filter\CorrelationIdFilter.class
+com\enterprise\platform\gateway\filter\CorrelationIdLoggingFilter.class
+com\enterprise\platform\gateway\filter\RequestLoggingFilter.class
+com\enterprise\platform\gateway\handler\GlobalGatewayExceptionHandler.class

@@ -1,0 +1,3 @@
+com\enterprise\platform\core\CorrelationIdGenerator.class
+com\enterprise\platform\core\HttpHeaders.class
+com\enterprise\platform\core\CorrelationConstants.class

@@ -1,0 +1,8 @@
+com\enterprise\platform\user\model\User$UserBuilder.class
+com\enterprise\platform\user\service\UserService.class
+com\enterprise\platform\user\config\WebConfig.class
+com\enterprise\platform\user\repository\UserRepository.class
+com\enterprise\platform\user\interceptor\CorrelationIdInterceptor.class
+com\enterprise\platform\user\controller\UserController.class
+com\enterprise\platform\user\model\User.class
+com\enterprise\platform\user\UserServiceApplication.class

@@ -1,0 +1,9 @@
+com\enterprise\platform\parking\controller\ParkingController.class
+com\enterprise\platform\parking\interceptor\CorrelationIdInterceptor.class
+com\enterprise\platform\parking\model\ParkingSlot$Status.class
+com\enterprise\platform\parking\service\ParkingService.class
+com\enterprise\platform\parking\ParkingServiceApplication.class
+com\enterprise\platform\parking\config\WebConfig.class
+com\enterprise\platform\parking\model\ParkingSlot$ParkingSlotBuilder.class
+com\enterprise\platform\parking\repository\ParkingSlotRepository.class
+com\enterprise\platform\parking\model\ParkingSlot.class
